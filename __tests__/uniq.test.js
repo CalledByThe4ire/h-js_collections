@@ -1,4 +1,4 @@
-import uniq from '../uniq';
+import uniq from '../src/uniq';
 
 test('uniq', () => {
   expect(uniq([])).toEqual([]);
