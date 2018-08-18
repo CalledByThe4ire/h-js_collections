@@ -1,23 +1,20 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+### wordsCount.js
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+Реализуйте и экспортируйте по умолчанию функцию, которая принимает на вход два параметра: список слов и список стоп-слов. Задача функции вернуть объект типа `Map`, содержащий в себе частоту переданных слов. То есть, ключами являются сами слова, а значениями число повторений.
 
-# nodejs-package
+-   Слова могут быть в разных регистрах, а подсчет должен работать без учета регистра. Соответственно в результирующем наборе слова должны быть представлены в нижнем регистре.
+-   Порядок слов в выходе должен совпадать с порядком появления новых слов во входном наборе
+-   `stopWords` это список стоп-слов, то есть эти слова не должны попадать в результирующую структуру
 
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Issue Count](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/issue_count.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Build Status](https://travis-ci.org/hexlet-boilerplates/nodejs-package.svg?branch=master)](https://travis-ci.org/hexlet-boilerplates/nodejs-package)
+```
+const stopWords = ['and', 'or', 'a', 'the', ''];
+const words = ['HellO', 'h', 'And', 'heLlo', '', 'AND', 'DOG', 'oR', 'cat', 'HELLO', 'caT'];
+wordsCount(words, stopWords); // [['hello', 3], ['h', 1], ['dog', 1], ['cat', 2]]
 
-## Setup
-
-```sh
-$ make install
 ```
 
-## Run tests
+#### Подсказки
 
-```sh
-$ make test
-```
+-   Воспользуйтесь тройкой `map/filter/reduce`.
+-   Функция `has` типа `Map` проверяет наличие ключа в мапе
+-   Проверка должна быть регистро-независимой
