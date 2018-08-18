@@ -1,23 +1,53 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+### Enumerable.js
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+#### Select
 
-# nodejs-package
+Реализуйте метод `select`, который отображает (принцип работы как у функции `map`) коллекцию, другими словами, извлекает из элементов коллекции нужные данные и возвращает объект с новой (отображенной) коллекцией из этих данных.
 
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Issue Count](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/issue_count.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Build Status](https://travis-ci.org/hexlet-boilerplates/nodejs-package.svg?branch=master)](https://travis-ci.org/hexlet-boilerplates/nodejs-package)
+```
+const cars = [
+  { brand: 'bmw', model: 'm5', year: 2014 },
+  { brand: 'bmw', model: 'm4', year: 2013 },
+  { brand: 'kia', model: 'sorento', year: 2014 },
+  { brand: 'kia', model: 'rio', year: 2010 },
+  { brand: 'kia', model: 'sportage', year: 2012 },
+];
+coll = new Enumerable(cars);
 
-## Setup
+// [car] => [model]
+const result = coll.select(car => car.model);
 
-```sh
-$ make install
+assert.deepEqual(result.toArray(), ['m5', 'm4', 'sorento', 'rio', 'sportage']);
+
 ```
 
-## Run tests
+#### OrderBy
 
-```sh
-$ make test
+Реализуйте метод `orderBy`, который сортирует коллекцию на основе переданных данных.
+
+Принимаемые параметры:
+
+1.  Функция, возвращающая значение, по которому будет происходить сортировка.
+2.  Направление сортировки: `asc` - по возрастанию, `desc` - по убыванию (по умолчанию - `asc`).
+
 ```
+const cars = [
+  { brand: 'bmw', model: 'm5', year: 2014 },
+  { brand: 'bmw', model: 'm4', year: 2013 },
+  { brand: 'kia', model: 'sorento', year: 2014 },
+  { brand: 'kia', model: 'rio', year: 2010 },
+  { brand: 'kia', model: 'sportage', year: 2012 },
+];
+coll = new Enumerable(cars);
+
+const result = coll.orderBy(car => car.year, 'desc')
+  .where(car => car.brand === 'bmw')
+  .select(car => car.model);
+
+assert.deepEqual(result.toArray(), ['m5', 'm4']);
+
+```
+
+#### Подсказки
+
+Для выполнения сортировки воспользуйтесь встроенной функцией: `sort`.<https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/sort>
