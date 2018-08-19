@@ -5,44 +5,38 @@ class Enumerable {
     this.operations = operations || [];
   }
 
-  orderBy(fn, direction = "asc") {
+  build(fn) {
+    return new Enumerable(this.collection.slice(), this.operations.concat(fn));
+  }
+
+  select(fn) {
+    return this.build(coll => coll.map(fn));
+  }
+
+  orderBy(fn, direction = 'asc') {
     const comparator = (a, b) => {
-      const first = fn(a);
-      const second = fn(b);
-      const compareResult = direction === "asc" ? 1 : -1;
+      const a1 = fn(a);
+      const b1 = fn(b);
 
-      if (first > second) {
+      const compareResult = direction === 'asc' ? 1 : -1;
+
+      if (a1 > b1) {
         return compareResult;
-      }
-
-      if (first < second) {
+      } else if (a1 < b1) {
         return -compareResult;
       }
 
       return 0;
     };
-
-    const newOps = this.operations.slice();
-    newOps.push(coll => coll.sort(comparator));
-    return new Enumerable(this.collection.slice(), newOps);
-  }
-
-  select(fn) {
-    const newOps = this.operations.slice();
-    newOps.push(coll => coll.map(fn));
-    return new Enumerable(this.collection.slice(), newOps);
+    return this.build(coll => coll.sort(comparator));
   }
 
   where(fn) {
-    const newOps = this.operations.slice();
-    newOps.push(coll => coll.filter(fn));
-    return new Enumerable(this.collection.slice(), newOps);
+    return this.build(coll => coll.filter(fn));
   }
-  // на каждом этапе из this.operation достаётся очередная функция,
-  // которая обрабатывает аккумулятор. Таким образом, из этапа в этап,
-  // происходит последовательная обработка массива с данными.
+
   toArray() {
-    return this.operations.reduce((acc, op) => op(acc), this.collection);
+    return this.operations.reduce((acc, func) => func(acc), this.collection);
   }
   // END
 }
