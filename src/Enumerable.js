@@ -12,19 +12,21 @@ class Enumerable {
 
   // BEGIN (write your solution here)
   orderBy(fn, direction = 'asc') {
-    const compare = (a, b) => {
-      const first = fn(a);
-      const second = fn(b);
-      if (first > second) {
-        return direction === 'asc' ? 1 : -1;
+    const comparator = (a, b) => {
+      const a1 = fn(a);
+      const b1 = fn(b);
+
+      const compareResult = direction === 'asc' ? 1 : -1;
+
+      if (a1 > b1) {
+        return compareResult;
+      } else if (a1 < b1) {
+        return -compareResult;
       }
-      if (first < second) {
-        return direction === 'asc' ? -1 : 1;
-      }
+
       return 0;
     };
-
-    this.collection.sort(compare);
+    this.collection.sort(comparator);
     return this;
   }
   // END
