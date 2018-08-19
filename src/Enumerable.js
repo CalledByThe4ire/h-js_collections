@@ -28,8 +28,9 @@ class Enumerable {
       return 0;
     };
 
-    const sorted = this.collection.slice().sort(comparator);
-    return new Enumerable(sorted);
+    const clone = this.collection.slice();
+    clone.sort(comparator);
+    return new Enumerable(clone);
     // END
   }
 
