@@ -2,10 +2,15 @@ class Enumerable {
   constructor(collection, operations) {
     this.collection = collection;
     this.operations = operations || [];
+    this.memo = null;
   }
 
   build(fn) {
     return new Enumerable(this.collection.slice(), this.operations.concat(fn));
+  }
+
+  get length() {
+    return this.memo ? this.memo.length : this.toArray().length;
   }
 
   select(fn) {
@@ -35,7 +40,12 @@ class Enumerable {
   }
 
   // BEGIN (write your solution here)
-
+  toArray() {
+    if (!this.memo) {
+      this.memo = this.operations.reduce((acc, func) => func(acc), this.collection);
+    }
+    return this.memo.slice();
+  }
   // END
 }
 
