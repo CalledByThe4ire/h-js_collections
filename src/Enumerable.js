@@ -8,9 +8,24 @@ class Enumerable {
     return new Enumerable(this.collection.slice(), this.operations.concat(fn));
   }
 
-  // BEGIN (write your solution here)
+  where(...args) {
+    return this.build((coll) => {
+      return args.reduce((acc, value) => {
+        if (typeof value === 'function') {
+          return acc.filter(value);
+        }
 
-  // END
+        if (typeof value === 'object') {
+          return Object.entries(value).reduce((accumulator, item) => {
+            const key = item[0];
+            const val = item[1];
+            const func = element => element[key] === val;
+            return accumulator.filter(func);
+          }, acc);
+        }
+      }, coll);
+    });
+  }
 
   get length() {
     return this.toArray().length;
