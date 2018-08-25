@@ -1,23 +1,35 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+### objectify.js
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+Реализуйте и экспортируйте по умолчанию функцию, которая работает следующим образом:
 
-# nodejs-package
+1.  Принимает на вход список (в виде обычного js массива с объектами внутри) и функцию-селектор, выбирающую из каждого объекта определенное значение.
+2.  Возвращает объект, в котором свойство - это результат применения функции селектора к каждому объекту в массиве, а значение - это сам объект.
 
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Issue Count](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/issue_count.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Build Status](https://travis-ci.org/hexlet-boilerplates/nodejs-package.svg?branch=master)](https://travis-ci.org/hexlet-boilerplates/nodejs-package)
+Обратите внимание на то, что эта функция высшего порядка является универсальной и работает с любыми наборами данных.
 
-## Setup
+```
+const cars = [
+  { brand: 'bmw', model: 'm3', year: 2013 },
+  { brand: 'opel', model: 'astra', year: 2014 },
+  { brand: 'hyundai', model: 'accent', year: 2014 },
+  { brand: 'kia', model: 'rio', year: 2013 },
+  { brand: 'kia', model: 'sportage', year: 2015 },
+];
 
-```sh
-$ make install
+console.log(objectify(cars, car => car.model));
+
+// {
+//   accent: { brand: 'hyundai', model: 'accent', year: 2014 },
+//   astra: { brand: 'opel', model: 'astra', year: 2014 },
+//   m3: { brand: 'bmw', model: 'm3', year: 2013 },
+//   rio: { brand: 'kia', model: 'rio', year: 2013 },
+//   sportage: { brand: 'kia', model: 'sportage', year: 2015 },
+// };
+
 ```
 
-## Run tests
+### Подсказки
 
-```sh
-$ make test
-```
+-   `{ ...acc, [propertyName]: value }`
+-   Решите эту задачу используя `reduce`
+-   Порядок ключей в объекте при выводе - не важен
