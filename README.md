@@ -1,23 +1,23 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+При работе с текстом скобки занимают важное место. Мы сплошь и рядом сталкиваемся со скобками разных видов (а если рассматривать шире, то с любыми парными сущностями, обозначающими начало и конец блока текста): это и программный код, и html-разметка, и форматы данных (например, JSON) и обычное письмо.
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+При этом важно соблюдать требования к структуре, которую образуют скобки в тексте:
 
-# nodejs-package
+-   Закрывающая скобка не должна идти впереди открывающей.
+-   Скобки --- это парные структуры. У каждой открывающей скобки должна быть соответствующая ей закрывающая скобка.
+-   Для структуры, состоящей из скобок разных типов, важен порядок закрытия скобок: первой закрывется скобка, чей тип совпадает с типом последней открытой скобки ([LIFO](https://ru.wikipedia.org/wiki/LIFO), типичная задача для [стека](https://ru.wikipedia.org/wiki/%D0%A1%D1%82%D0%B5%D0%BA)).
 
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Issue Count](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/issue_count.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Build Status](https://travis-ci.org/hexlet-boilerplates/nodejs-package.svg?branch=master)](https://travis-ci.org/hexlet-boilerplates/nodejs-package)
+### isBracketStructureBalanced.js
 
-## Setup
+Реализуйте и экспортируйте функцию по умолчанию, которая принимает на вход строку, состоящую только из открывающих и закрывающих скобок разных типов, и проверяет является ли эта строка сбалансированной (соответсвующей требованиям). Пустая строка (отсутствие скобок) считается сбалансированной.
 
-```sh
-$ make install
+```
+import isBracketStructureBalanced from 'bracketStructureValidator';
+
+isBracketStructureBalanced('[()]');  // true
+isBracketStructureBalanced('{<>}}'); // false
+
 ```
 
-## Run tests
+Функция должна поддерживать, минимум, четыре вида скобок: круглые --- `()`, квадратные --- `[]`, фигурные --- `{}` и угловые --- `<>`.
 
-```sh
-$ make test
-```
+##### (85%)
