@@ -1,23 +1,31 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+Query String (строка запроса) - часть адреса страницы в интернете содержащая константы и их значения. Она начинается после вопросительного знака и идет до конца адреса. Пример:
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+```
+# query string: page=5
+https://ru.hexlet.io/blog?page=5
 
-# nodejs-package
-
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Issue Count](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/issue_count.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Build Status](https://travis-ci.org/hexlet-boilerplates/nodejs-package.svg?branch=master)](https://travis-ci.org/hexlet-boilerplates/nodejs-package)
-
-## Setup
-
-```sh
-$ make install
 ```
 
-## Run tests
+Если параметров несколько, то они отделяются амперсандом `&`
 
-```sh
-$ make test
 ```
+# query string: page=5&per=10
+https://ru.hexlet.io/blog?per=10&page=5
+
+```
+
+### buildQueryString.js
+
+Реализуйте и экспортируйте функцию по умолчанию, которая принимает на вход список параметров и возвращает сформированный query string из этих параметров:
+
+```
+import bqs from '../buildQueryString';
+
+bqs({ per: 10, page: 1 });
+// page=1&per=10
+
+```
+
+Имена параметров в выходной строке должны располагаться в алфавитном порядке (то есть их нужно отсортировать)
+
+##### (94%)
