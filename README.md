@@ -1,23 +1,18 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+intersection.js
+Реализуйте и экспортируйте функцию по умолчанию, которая находит пересечение двух массивов. Пересечение двух массивов A и B — это массив только с теми элементами A и B, которые одновременно принадлежат обоим массивам, без дублей.
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+Обратите внимание, что порядок значений в пересечении должен соответствовать порядку появления этих значений в исходных массивах (сначала в первом переданном массиве, потом - во втором).
 
-# nodejs-package
+intersection([2, 1], [2, 3]);
+// → [2]
 
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Issue Count](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/issue_count.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Build Status](https://travis-ci.org/hexlet-boilerplates/nodejs-package.svg?branch=master)](https://travis-ci.org/hexlet-boilerplates/nodejs-package)
+intersection([3, 1, 3], [3, 3, 2]);
+// → [3]
 
-## Setup
+intersection(
+      ['kirill', 'rakhim', 'alex', 'dima', 'dzhamshut'],
+      ['ippolit', 'rakhim', 'dima', 'schtirlitz', 'kirill', 'alex', 'alibaba'],
+    );
+// → ['kirill', 'rakhim', 'alex', 'dima']
 
-```sh
-$ make install
-```
-
-## Run tests
-
-```sh
-$ make test
-```
+##### (96%)
