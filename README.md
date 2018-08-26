@@ -1,23 +1,27 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+[NRZI код](https://ru.wikipedia.org/wiki/NRZI) (Non Return to Zero Invertive) --- один из способов линейного кодирования. Код формируется путем инверсного состояния при поступлении на вход кодирующего устройства логической единицы, при поступлении логического нуля состояние потенциала не меняется.
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+![nrzi](https://cdn2.hexlet.io/attachments/7d9e7d156c66da9f121c0a31eb301fc7fdb327ea/store/031b8af0f02731f922f9d62cae54f70ce4e06a191fa091ae2e3710113a45/file)
 
-# nodejs-package
+### solution.js
 
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Issue Count](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/issue_count.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Build Status](https://travis-ci.org/hexlet-boilerplates/nodejs-package.svg?branch=master)](https://travis-ci.org/hexlet-boilerplates/nodejs-package)
+Реализуйте и экспортируйте по умолчанию функцию принимающую в качестве параметра строку в виде линейного сигнала и возвращающую строку с бинарным кодом.
 
-## Setup
+Пример использования:
 
-```sh
-$ make install
+```
+const signal1 = "_|¯|____|¯|__|¯¯¯";
+nrzi(signal1); // => "011000110100"
+
+const signal2 = "|¯|___|¯¯¯¯¯|___|¯|_|¯";
+nrzi(signal2); // => "110010000100111"
+
+const signal3 = '¯|___|¯¯¯¯¯|___|¯|_|¯';
+nrzi(signal3); // => '010010000100111'
+
 ```
 
-## Run tests
+### Подсказки
 
-```sh
-$ make test
-```
+-   Символ `|` в строке разделяет разные такты и означает, что уровень сигнала в следующем такте, был изменён на противоположный по сравнению с предыдущим тактом.
+
+##### (82%)
