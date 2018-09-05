@@ -1,8 +1,12 @@
 // @flow
-export default (list: Array<string[]>): Array<string[]> =>
-  list.reduce((acc, value, idx) => {
-    const doubled = [];
-    value.forEach(item => doubled.push(...item, ...item));
-    const resultingList = [...acc, (acc[idx] = doubled), (acc[idx + 1] = doubled)];
-    return resultingList;
-  }, []);
+import _ from 'lodash';
+
+const duplicateEachItemInArray = arr =>
+  _.flatten(arr.map(item => [item, item]));
+
+const enlargeArrayImage = (arr: Array<string[]>): Array<string[]> => {
+  const horizontallyStretched = arr.map(duplicateEachItemInArray);
+  return duplicateEachItemInArray(horizontallyStretched);
+};
+
+export default enlargeArrayImage;
