@@ -1,11 +1,4 @@
 // @flow
-export default (arr: Array<number>): number | null => {
-  for (const value of arr) {
-    const filtered = arr.filter(item => item === value);
-    if (filtered.length % 2 !== 0) {
-      return value;
-    }
-  }
-  return null;
-};
+/* eslint no-bitwise: ["error", { "allow": ["^"] }] */
+export default (arr: Array<number>): number => arr.reduce((acc, num) => acc ^ num, 0);
 
