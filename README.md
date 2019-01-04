@@ -1,23 +1,47 @@
-##
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/hexletguides.github.io/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package)
+### normalizeData.js
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=nodejs-package).
-##
+Реализуйте и экспортируйте по умолчанию функцию, которая переводит входные данные в удобный для построения графика формат.
 
-# nodejs-package
+На вход эта функция принимает массив данных. Каждая запись массива представляет из себя объект типа `{ value: 14, date: '02.08.2018' }`. Например:
 
-[![Code Climate](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/gpa.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Issue Count](https://codeclimate.com/github/hexlet-boilerplates/javascript-package/badges/issue_count.svg)](https://codeclimate.com/github/hexlet-boilerplates/javascript-package)
-[![Build Status](https://travis-ci.org/hexlet-boilerplates/nodejs-package.svg?branch=master)](https://travis-ci.org/hexlet-boilerplates/nodejs-package)
+```
+const data = [
+  { value: 14, date: '02.08.2018' },
+  { value: 43, date: '03.08.2018' },
+  { value: 38, date: '05.08.2018' },
+];
 
-## Setup
-
-```sh
-$ make install
 ```
 
-## Run tests
+Вторым и третьим параметрами функция принимает даты (в форме строк типа `'YYYY-MM-DD'`) начала и конца периода:
 
-```sh
-$ make test
 ```
+const begin = '2018-08-01';
+const end = '2018-08-06';
+
+```
+
+Диапазон дат задаёт размер выходного массива, который должна сгенерить реализуемая функция. Правила формирования итогового массива:
+
+-   он заполняется записями по всем дням из диапазона `begin - end`
+-   в него включаются только те записи из входного массива, даты которых попадают в диапазон
+-   если во входном массиве нет данных для какого-то дня из диапазона, то в свойство `value` записи этого дня установить значение `0`
+
+```
+const result = normalizeData(data, beginDate, endDate);
+
+console.log(result);
+// OUTPUT
+[ { value: 0, date: '01.08.2018' },
+  { value: 14, date: '02.08.2018' },
+  { value: 43, date: '03.08.2018' },
+  { value: 0, date: '04.08.2018' },
+  { value: 38, date: '05.08.2018' },
+  { value: 0, date: '06.08.2018' } ]
+
+```
+
+### Подсказки
+
+-   Обратите внимание, что в практике импортированы функции для работы c датами, коллекциями и объектами. При необходимости вы можете (это необязательное требование) ими воспользоваться.
+-   Даты: <https://date-fns.org/>
